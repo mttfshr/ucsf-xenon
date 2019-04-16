@@ -1,25 +1,37 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
-  </div>
+ <v-app id="xenon">
+    <Nav />
+    <v-toolbar color="indigo darken-4" dark fixed app>
+      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+      <v-toolbar-title>Wait time app</v-toolbar-title>
+    </v-toolbar>
+    <v-content fluid>
+      <v-container fluid fill-height>
+        <v-layout justify-center>
+          <v-flex>
+            <router-view />
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-content>
+    <v-footer color="indigo" app>
+      <span class="white--text">&copy; 2019</span>
+    </v-footer>
+  </v-app>
 </template>
-<style lang="stylus">
-#app
-  font-family 'Avenir', Helvetica, Arial, sans-serif
-  -webkit-font-smoothing antialiased
-  -moz-osx-font-smoothing grayscale
-  text-align center
-  color #2c3e50
 
-#nav
-  padding 30px
-  a
-    font-weight bold
-    color #2c3e50
-    &.router-link-exact-active
-      color #42b983
-</style>
+<script>
+import Nav from './components/Nav'
+export default {
+  name: 'App',
+  components: {
+    Nav
+  },
+  data: () => ({
+    drawer: null
+  }),
+  props: {
+    source: String
+  }
+}
+</script>
